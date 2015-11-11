@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - global@localhost" uuid="c5a5a410-24fa-4234-bd10-af04ca956609">
+    <database-info product="MySQL" version="5.6.25" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="global"/>
+    <table name="archivelocation" schema="" catalog="global" type="TABLE">
+      <column name="LocationPk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Code" sqlType="VARCHAR" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Description" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="Modifiedby" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="LocationPk"/>
+      <exported-key name="FK_Artefact_ArchiveLocation" table="artefact" schema="" catalog="global" columns="LocationFK"/>
+      <exported-key name="FK_ArtefactCICO_ArchiveLocation" table="artefactcico" schema="" catalog="global" columns="LocationSK"/>
+      <exported-key name="FK_MaintenanceCycle_ArchiveLocation" table="maintenancecycle" schema="" catalog="global" columns="LocationFK"/>
+      <exported-key name="FK_ScheduledMaintenance_ArchiveLocation" table="scheduledmaintenance" schema="" catalog="global" columns="LocationFK"/>
+      <exported-key name="FK_TaskList_ArchiveLocation" table="tasklist" schema="" catalog="global" columns="LocationFK"/>
+      <exported-key name="FK_User_ArchiveLocation" table="user" schema="" catalog="global" columns="LocationFk"/>
+    </table>
+    <table name="artefact" schema="" catalog="global" type="TABLE">
+      <column name="ArtefactPK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ArtefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ArtefactTypeCode" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LocationFK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ArtefactPID" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LevelNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="SequenceNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ArtefactName" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+      <column name="CreatedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ArtefactCode"/>
+      <foreign-key name="FK_Artefact_ArchiveLocation" columns="LocationFK" ref-table="archivelocation" ref-schema="" ref-catalog="global" ref-columns="LocationPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Artefact_ArtefactType" columns="ArtefactTypeCode" ref-table="artefacttype" ref-schema="" ref-catalog="global" ref-columns="ArtefactTypeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_ARTEFACTCODE" table="artefactaudit" schema="" catalog="global" columns="ArtefactCode"/>
+      <exported-key name="FK_ArtefactCICO_Artefact" table="artefactcico" schema="" catalog="global" columns="ArtefactCode"/>
+      <exported-key name="ArtefactCode" table="attributevalue" schema="" catalog="global" columns="ArtefactCode"/>
+      <exported-key name="FK_MaintenanceCycle_Artefact" table="maintenancecycle" schema="" catalog="global" columns="ArtefactCode"/>
+      <exported-key name="FK_ScheduledMaintenance_Artefact" table="scheduledmaintenance" schema="" catalog="global" columns="ArtefactCode"/>
+      <exported-key name="FK_TaskList_Artefact" table="tasklist" schema="" catalog="global" columns="ArtefactCode"/>
+      <index name="FK_Artefact_ArchiveLocation" unique="false" columns="LocationFK"/>
+      <index name="FK_Artefact_ArtefactType" unique="false" columns="ArtefactTypeCode"/>
+    </table>
+    <table name="artefactaudit" schema="" catalog="global" type="TABLE">
+      <column name="AuditId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ArtefactCode" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UpdatedColumn" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="OldValue" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NewValue" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UpdatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="UpdatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="AuditId"/>
+      <foreign-key name="FK_ARTEFACTCODE" columns="ArtefactCode" ref-table="artefact" ref-schema="" ref-catalog="global" ref-columns="ArtefactCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_USER" columns="UpdatedBy" ref-table="user" ref-schema="" ref-catalog="global" ref-columns="UserPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_ARTEFACTCODE_idx" unique="false" columns="ArtefactCode"/>
+      <index name="FK_USERS_idx" unique="false" columns="UpdatedBy"/>
+    </table>
+    <table name="artefactcico" schema="" catalog="global" type="TABLE">
+      <column name="CICOSK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CICOCode" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ArtefactTypeCode" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ArtefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LocationSK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="userfk" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CICOTYPE" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CICOStatus" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CheckInDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="CheckoutDate" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="Purpose" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Remarks" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="CICOSK,CICOCode"/>
+      <foreign-key name="FK_ArtefactCICO_ArchiveLocation" columns="LocationSK" ref-table="archivelocation" ref-schema="" ref-catalog="global" ref-columns="LocationPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ArtefactCICO_Artefact" columns="ArtefactCode" ref-table="artefact" ref-schema="" ref-catalog="global" ref-columns="ArtefactCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ArtefactTYPECODE_ArtefactCICO" columns="ArtefactTypeCode" ref-table="artefacttype" ref-schema="" ref-catalog="global" ref-columns="ArtefactTypeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_USERFK" columns="userfk" ref-table="user" ref-schema="" ref-catalog="global" ref-columns="UserPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_ArtefactCICO_ArchiveLocation" unique="false" columns="LocationSK"/>
+      <index name="FK_ArtefactCICO_Artefact" unique="false" columns="ArtefactCode"/>
+      <index name="FK_ArtefactTYPECODE_ArtefactCICO" unique="false" columns="ArtefactTypeCode"/>
+      <index name="FK_USERF" unique="false" columns="userfk"/>
+    </table>
+    <table name="artefacttype" schema="" catalog="global" type="TABLE">
+      <column name="ArtefactTypePK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ArtefactTypeCode" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ArtefactTypePID" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ArtefactTypeDescription" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LevelNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="SequenceNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ArtefactColor" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" remarks="Y29sb3IgdG8gYmUgZGlzcGxheWVkIGluIERhc2hCb2FyZA=="/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ArtefactTypeCode"/>
+      <exported-key name="FK_Artefact_ArtefactType" table="artefact" schema="" catalog="global" columns="ArtefactTypeCode"/>
+      <exported-key name="FK_ArtefactTYPECODE_ArtefactCICO" table="artefactcico" schema="" catalog="global" columns="ArtefactTypeCode"/>
+      <exported-key name="FK_Attributes_ArtefactType" table="attributes" schema="" catalog="global" columns="ArtefactTypeCode"/>
+      <exported-key name="ArtefactType" table="attributevalue" schema="" catalog="global" columns="ArtefactTypeCode"/>
+      <exported-key name="FK_Checklist_ArtefactType" table="checklist" schema="" catalog="global" columns="ArtefactTypeCode"/>
+      <exported-key name="FK_MaintenanceCycle_ArtefactType" table="maintenancecycle" schema="" catalog="global" columns="ArtefactTypeCode"/>
+      <exported-key name="FK_ScheduledMaintenance_ArtefactType" table="scheduledmaintenance" schema="" catalog="global" columns="ArtefactTypeCode"/>
+    </table>
+    <table name="attributelist" schema="" catalog="global" type="TABLE">
+      <column name="AttributeListPK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="AlistCode" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AlistValue" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="AttributeListPK"/>
+    </table>
+    <table name="attributes" schema="" catalog="global" type="TABLE">
+      <column name="AttributesPK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="AttributeCode" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ArtefactTypeCode" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AListCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Attributes" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PickFlag" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="SequenceNo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Prime" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="AttType" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IsSearchable" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="IsMaintainable" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="DataType" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Size" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Format" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="htmltype" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="J3RleHQn"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="AttributeCode"/>
+      <foreign-key name="FK_Attributes_ArtefactType" columns="ArtefactTypeCode" ref-table="artefacttype" ref-schema="" ref-catalog="global" ref-columns="ArtefactTypeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="AttributePK" table="attributevalue" schema="" catalog="global" columns="AttributeCode"/>
+      <index name="FK_Attributes_ArtefactType" unique="false" columns="ArtefactTypeCode"/>
+    </table>
+    <table name="attributevalue" schema="" catalog="global" type="TABLE">
+      <column name="AttributeValuePK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ArtefactTypeCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ArtefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AttributeCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ArtefactParentID" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AttributeValue" sqlType="VARCHAR" precision="1500" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="AttributeValuePK"/>
+      <foreign-key name="ArtefactCode" columns="ArtefactCode" ref-table="artefact" ref-schema="" ref-catalog="global" ref-columns="ArtefactCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="ArtefactType" columns="ArtefactTypeCode" ref-table="artefacttype" ref-schema="" ref-catalog="global" ref-columns="ArtefactTypeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="AttributePK" columns="AttributeCode" ref-table="attributes" ref-schema="" ref-catalog="global" ref-columns="AttributeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="Artefact_code" unique="false" columns="ArtefactCode"/>
+      <index name="Artefact_Type" unique="false" columns="ArtefactTypeCode"/>
+      <index name="Attribute_code" unique="false" columns="AttributeCode"/>
+    </table>
+    <table name="audioattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MediaId" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Day" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Month" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Year" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Language" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Location" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Duration" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Titile" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FFL" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EFL" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ContentTypeCode" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="RelTypeCode" sqlType="VARCHAR" precision="900" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ArchStatCode" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DelPersonCode" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ADate" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="Remarks1" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Remarks2" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Remarks3" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Remarks4" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VQuality" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="AQuality" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FilePath" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Track" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="bboxattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ArchiveCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BoxNo" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Language" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TitleInEnglish" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Title" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Author" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Edition" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PublishedYear" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PublishedMonth" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Publisher" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BindingType" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ISBN" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Price" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Condition" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Source" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Pcode" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="RackNo" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Comments" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Remarks" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Dimension" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Audited" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="bookattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ArchiveCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BoxNo" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Language" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TitleInEnglish" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Title" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Author" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Edition" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PublishYear" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PublishMonth" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Publisher" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BindingType" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ISBN" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Price" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Condition" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Source" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Pcode" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="RachNo" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Comments" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Remarks" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Audited" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Dimension" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="5" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="checklist" schema="" catalog="global" type="TABLE">
+      <column name="CheckListPK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ArtefactTypeCode" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SequenceNo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CheckListItem" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CheckListType" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DataType" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pickflag" sqlType="VARCHAR" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pickcode" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="CheckListPK"/>
+      <foreign-key name="FK_Checklist_ArtefactType" columns="ArtefactTypeCode" ref-table="artefacttype" ref-schema="" ref-catalog="global" ref-columns="ArtefactTypeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_ConditionalReport_Checklist" table="conditionalreport" schema="" catalog="global" columns="CheckListFK"/>
+      <index name="FK_Checklist_ArtefactType" unique="false" columns="ArtefactTypeCode"/>
+    </table>
+    <table name="conditionalreport" schema="" catalog="global" type="TABLE">
+      <column name="ConditionalReportPK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="CheckListFK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="TaskListFK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Result" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="ConditionalReportPK"/>
+      <foreign-key name="FK_ConditionalReport_Checklist" columns="CheckListFK" ref-table="checklist" ref-schema="" ref-catalog="global" ref-columns="CheckListPK" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_ConditionalReport_Checklist" unique="false" columns="CheckListFK"/>
+    </table>
+    <table name="cr_section" schema="" catalog="global" type="TABLE">
+      <column name="sectionid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="sectionname" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sectiondesc" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="artefacttypecode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="checklist" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="createddate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="sectionid"/>
+    </table>
+    <table name="dummyphoto" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="code" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BoxNo" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="year" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="month" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="day" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hour" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="min" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="continent" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="center" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="location" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="subject" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="taggedperson" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="event" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="credits" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="photographer" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="comments" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hatselection" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="teamselection" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="finalselection" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="determined" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="landrecordattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Title" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Author" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="lboxattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BoxCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FolderCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FileCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Available" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FilePath" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Date" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Day" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Month" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Year" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Category" sqlType="VARCHAR" precision="650" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Sensitivity" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LetterType" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="From-Person" sqlType="VARCHAR" precision="1050" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FromAddr" sqlType="VARCHAR" precision="9050" scale="0" nullable="true" jdbcType="12"/>
+      <column name="To-Person" sqlType="VARCHAR" precision="9050" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ToAddr" sqlType="VARCHAR" precision="9050" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Keywords" sqlType="VARCHAR" precision="9050" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Description" sqlType="VARCHAR" precision="9050" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Language" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NoOfPages" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Source" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Comments" sqlType="VARCHAR" precision="9050" scale="0" nullable="true" jdbcType="12"/>
+      <column name="WTW" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="File" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12" def="J05VTEwn"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="magazineattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Title" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Author" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="maintenancecycle" schema="" catalog="global" type="TABLE">
+      <column name="MaintenanceCyclePK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="LocationFK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ArtefactTypeCode" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ArtefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CurrentDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="Frequency" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Unit" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NextServiceDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="EndDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="MaintenanceCyclePK"/>
+      <foreign-key name="FK_MaintenanceCycle_ArchiveLocation" columns="LocationFK" ref-table="archivelocation" ref-schema="" ref-catalog="global" ref-columns="LocationPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_MaintenanceCycle_Artefact" columns="ArtefactCode" ref-table="artefact" ref-schema="" ref-catalog="global" ref-columns="ArtefactCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_MaintenanceCycle_ArtefactType" columns="ArtefactTypeCode" ref-table="artefacttype" ref-schema="" ref-catalog="global" ref-columns="ArtefactTypeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_ScheduledMaintenance_MaintenanceCycle" table="scheduledmaintenance" schema="" catalog="global" columns="MaintenanceCycleFK"/>
+      <index name="FK_MaintenanceCycle_ArchiveLocation" unique="false" columns="LocationFK"/>
+      <index name="FK_MaintenanceCycle_Artefact" unique="false" columns="ArtefactCode"/>
+      <index name="FK_MaintenanceCycle_ArtefactType" unique="false" columns="ArtefactTypeCode"/>
+    </table>
+    <table name="page" schema="" catalog="global" type="TABLE">
+      <column name="PagePk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="PageName" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MenuTitle" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="URL" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dir" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Iscommon" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="PagePk"/>
+      <exported-key name="FK_Role_Page_Mapping_Page" table="role_page_mapping" schema="" catalog="global" columns="PageFk"/>
+    </table>
+    <table name="photoboxattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Code" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Year" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Month" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Day" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Hour" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Min" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Continent" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Country" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="State" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="City" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Center" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Location" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Subject" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Taggedperson" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Event" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Description" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Credits" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Photographer" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Comments" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HatSelection" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TeamSelection" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FinalSelection" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Determined" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BoxNo" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="photosattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="code" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BoxNo" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="year" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="month" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="day" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hour" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="min" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="continent" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="center" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="location" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="subject" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="taggedperson" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="event" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="credits" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="photographer" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="comments" sqlType="VARCHAR" precision="600" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hatselection" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="teamselection" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="finalselection" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="determined" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="60" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="prarticlesattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Title" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Author" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <table name="role" schema="" catalog="global" type="TABLE">
+      <column name="RolePk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="PageFK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Code" sqlType="VARCHAR" precision="5" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Description" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="RolePk"/>
+      <exported-key name="FK_Role_Page_Mapping_Role" table="role_page_mapping" schema="" catalog="global" columns="RoleFk"/>
+      <exported-key name="FK_User_Role" table="user" schema="" catalog="global" columns="RoleFk"/>
+    </table>
+    <table name="role_page_mapping" schema="" catalog="global" type="TABLE">
+      <column name="RolePageMappingPk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="RoleFk" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="PageFk" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="RolePageMappingPk"/>
+      <foreign-key name="FK_Role_Page_Mapping_Page" columns="PageFk" ref-table="page" ref-schema="" ref-catalog="global" ref-columns="PagePk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_Role_Page_Mapping_Role" columns="RoleFk" ref-table="role" ref-schema="" ref-catalog="global" ref-columns="RolePk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_Role_Page_Mapping_Page" unique="false" columns="PageFk"/>
+      <index name="FK_Role_Page_Mapping_Role" unique="false" columns="RoleFk"/>
+    </table>
+    <table name="scheduledmaintenance" schema="" catalog="global" type="TABLE">
+      <column name="ScheduleMaintenancePK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="MaintenanceCycleFK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ArtefactTypeCode" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ArtefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LocationFK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ScheduledServiceDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="CurrentStatus" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CreatedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ScheduleMaintenancePK"/>
+      <foreign-key name="FK_ScheduledMaintenance_ArchiveLocation" columns="LocationFK" ref-table="archivelocation" ref-schema="" ref-catalog="global" ref-columns="LocationPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ScheduledMaintenance_Artefact" columns="ArtefactCode" ref-table="artefact" ref-schema="" ref-catalog="global" ref-columns="ArtefactCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ScheduledMaintenance_ArtefactType" columns="ArtefactTypeCode" ref-table="artefacttype" ref-schema="" ref-catalog="global" ref-columns="ArtefactTypeCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ScheduledMaintenance_MaintenanceCycle" columns="MaintenanceCycleFK" ref-table="maintenancecycle" ref-schema="" ref-catalog="global" ref-columns="MaintenanceCyclePK" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TaskList_ScheduledMaintenance" table="tasklist" schema="" catalog="global" columns="ScheduleMaintenanceFK"/>
+      <index name="FK_ScheduledMaintenance_ArchiveLocation" unique="false" columns="LocationFK"/>
+      <index name="FK_ScheduledMaintenance_Artefact" unique="false" columns="ArtefactCode"/>
+      <index name="FK_ScheduledMaintenance_ArtefactType" unique="false" columns="ArtefactTypeCode"/>
+      <index name="FK_ScheduledMaintenance_MaintenanceCycle" unique="false" columns="MaintenanceCycleFK"/>
+    </table>
+    <table name="sectionmapping" schema="" catalog="global" type="TABLE">
+      <column name="sectionmappingid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="artefacttypecode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sectionid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="createddate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="sectionmappingid"/>
+    </table>
+    <table name="soubokmagwithattrib" schema="" catalog="global" type="TABLE">
+      <column name="COL 1" sqlType="VARCHAR" precision="8" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL2" sqlType="VARCHAR" precision="23" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 3" sqlType="VARCHAR" precision="22" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 4" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 5" sqlType="VARCHAR" precision="158" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 6" sqlType="VARCHAR" precision="158" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 7" sqlType="VARCHAR" precision="85" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 8" sqlType="VARCHAR" precision="51" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 9" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 10" sqlType="VARCHAR" precision="21" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 11" sqlType="VARCHAR" precision="42" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 12" sqlType="VARCHAR" precision="13" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 13" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 14" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 15" sqlType="VARCHAR" precision="17" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 16" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 17" sqlType="VARCHAR" precision="6" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 18" sqlType="VARCHAR" precision="51" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 19" sqlType="VARCHAR" precision="135" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 20" sqlType="VARCHAR" precision="142" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 21" sqlType="VARCHAR" precision="13" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 22" sqlType="VARCHAR" precision="18" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 23" sqlType="VARCHAR" precision="17" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 24" sqlType="VARCHAR" precision="25" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 25" sqlType="VARCHAR" precision="16" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 26" sqlType="VARCHAR" precision="12" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 27" sqlType="VARCHAR" precision="21" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 28" sqlType="VARCHAR" precision="47" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 29" sqlType="VARCHAR" precision="95" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 30" sqlType="VARCHAR" precision="26" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COL 31" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="tasklist" schema="" catalog="global" type="TABLE">
+      <column name="TaskListPK" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ArtefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ScheduleMaintenanceFK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="LocationFK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="UserFK" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ServiceDate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="TaskListPK"/>
+      <foreign-key name="FK_TaskList_ArchiveLocation" columns="LocationFK" ref-table="archivelocation" ref-schema="" ref-catalog="global" ref-columns="LocationPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TaskList_Artefact" columns="ArtefactCode" ref-table="artefact" ref-schema="" ref-catalog="global" ref-columns="ArtefactCode" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TaskList_ScheduledMaintenance" columns="ScheduleMaintenanceFK" ref-table="scheduledmaintenance" ref-schema="" ref-catalog="global" ref-columns="ScheduleMaintenancePK" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TaskList_User" columns="UserFK" ref-table="user" ref-schema="" ref-catalog="global" ref-columns="UserPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_TaskList_ArchiveLocation" unique="false" columns="LocationFK"/>
+      <index name="FK_TaskList_Artefact" unique="false" columns="ArtefactCode"/>
+      <index name="FK_TaskList_ScheduledMaintenance" unique="false" columns="ScheduleMaintenanceFK"/>
+      <index name="FK_TaskList_User" unique="false" columns="UserFK"/>
+    </table>
+    <table name="uploads" schema="" catalog="global" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="artefactcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="filepath" sqlType="VARCHAR" precision="10000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="uploadedby" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="uploadeddate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="user" schema="" catalog="global" type="TABLE">
+      <column name="UserPk" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="LocationFk" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="RoleFk" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Password" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ReportingTo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="AbhyasiID" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="FirstName" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MiddleName" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LastName" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EmailId" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CreatedBy" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CreatedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ModifiedBy" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ModifiedDate" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="ActiveStatus" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+      <primary-key name="PRIMARY" columns="UserPk"/>
+      <foreign-key name="FK_User_ArchiveLocation" columns="LocationFk" ref-table="archivelocation" ref-schema="" ref-catalog="global" ref-columns="LocationPk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_User_Role" columns="RoleFk" ref-table="role" ref-schema="" ref-catalog="global" ref-columns="RolePk" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_USER" table="artefactaudit" schema="" catalog="global" columns="UpdatedBy"/>
+      <exported-key name="FK_USERFK" table="artefactcico" schema="" catalog="global" columns="userfk"/>
+      <exported-key name="FK_TaskList_User" table="tasklist" schema="" catalog="global" columns="UserFK"/>
+      <index name="FK_User_ArchiveLocation" unique="false" columns="LocationFk"/>
+      <index name="FK_User_Role" unique="false" columns="RoleFk"/>
+    </table>
+    <table name="videoattributes" schema="" catalog="global" type="TABLE">
+      <column name="artefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Title" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="RelTypeCode" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="ArchiveStatusCode" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="DeliveryPersonCode" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Date" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Remarks1" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Remarks2" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Remarks3" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Remarks4" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="VideoQuality" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="AudioQuality" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Day" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="FilePath" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="TrackNo" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="LocCode" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Month" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Year" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Language" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Duration" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="FirstFewLine" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="EndofLines" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="contentType" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="VisibleStatus" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="J29uJw=="/>
+    </table>
+    <procedure name="InitialScheduleTask" schema="" catalog="global" type="1"/>
+    <procedure name="MigrateData" schema="" catalog="global" type="1">
+      <prototype>
+        <parameter name="artefactType" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12" type="1" index="1"/>
+        <parameter name="artefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" type="1" index="2"/>
+        <parameter name="attributeCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" type="1" index="3"/>
+        <parameter name="attributeValue" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12" type="1" index="4"/>
+      </prototype>
+    </procedure>
+    <procedure name="RenameArtefact" schema="" catalog="global" type="1">
+      <prototype>
+        <parameter name="oldName" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" type="1" index="1"/>
+        <parameter name="newName" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" type="1" index="2"/>
+      </prototype>
+    </procedure>
+    <procedure name="ScheduleTask" schema="" catalog="global" type="1">
+      <prototype>
+        <parameter name="location" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" type="1" index="1"/>
+        <parameter name="artefactType" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12" type="1" index="2"/>
+        <parameter name="artefactCode" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12" type="1" index="3"/>
+        <parameter name="userpk" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" type="1" index="4"/>
+      </prototype>
+    </procedure>
+    <procedure name="UpdateUserAndTime" schema="" catalog="global" type="1">
+      <prototype>
+        <parameter name="AttributeValuePK1" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" type="1" index="1"/>
+        <parameter name="userid" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" type="1" index="2"/>
+      </prototype>
+    </procedure>
+    <procedure name="updateData" schema="" catalog="global" type="1">
+      <prototype>
+        <parameter name="artefactType" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12" type="1" index="1"/>
+        <parameter name="artefactCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" type="1" index="2"/>
+        <parameter name="attributeCode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" type="1" index="3"/>
+        <parameter name="attributeValue" sqlType="VARCHAR" precision="9000" scale="0" nullable="true" jdbcType="12" type="1" index="4"/>
+      </prototype>
+    </procedure>
+  </data-source>
+</component>
